@@ -60,3 +60,21 @@ class AuthLayout extends StatelessWidget {
     ),
   );
 }
+class AuthSubmit extends StatelessWidget {
+  const AuthSubmit({super.key, required this.label, required this.busy,
+    required this.onPressed});
+  final String label;
+  final bool busy;
+  final VoidCallback onPressed;
+  @override
+  Widget build(BuildContext context) => FilledButton(
+    onPressed: busy ? null : onPressed,
+    child: busy
+      ? const SizedBox(width: 22, height: 22,
+          child: CircularProgressIndicator(strokeWidth: 2))
+      : Row(mainAxisSize: MainAxisSize.min, children: [
+          Text(label), const SizedBox(width: 10),
+          const Icon(Icons.arrow_forward_rounded, size: 21),
+        ]),
+  );
+}
