@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:setflow/core/database/app_theme.dart';
+import 'package:setflow/core/app_theme.dart';
 import 'package:setflow/core/validators.dart';
 import 'package:setflow/features/auth/viewmodels/auth_view_model.dart';
 import 'package:setflow/features/auth/views/widgets/auth_field.dart';

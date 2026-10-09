@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:setflow/core/database/app_theme.dart';
+import 'package:setflow/core/app_theme.dart';
 
 class AuthField extends StatefulWidget {
   const AuthField({super.key, required this.label, required this.hint,

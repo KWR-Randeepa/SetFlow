@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:setflow/core/database/app_theme.dart';
+import 'package:setflow/core/app_theme.dart';
 
 class AuthLayout extends StatelessWidget {
   const AuthLayout({super.key, required this.title, required this.subtitle,
@@ -60,6 +60,29 @@ class AuthLayout extends StatelessWidget {
     ),
   );
 }
+
+class AuthError extends StatelessWidget {
+  const AuthError(this.error, {super.key});
+  final String? error;
+
+  @override
+  Widget build(BuildContext context) {
+    final message = error;
+    if (message == null || message.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.error,
+          fontSize: 13,
+        ),
+      ),
+    );
+  }
+}
+
 class AuthSubmit extends StatelessWidget {
   const AuthSubmit({super.key, required this.label, required this.busy,
     required this.onPressed});
@@ -72,9 +95,19 @@ class AuthSubmit extends StatelessWidget {
     child: busy
       ? const SizedBox(width: 22, height: 22,
           child: CircularProgressIndicator(strokeWidth: 2))
-      : Row(mainAxisSize: MainAxisSize.min, children: [
-          Text(label), const SizedBox(width: 10),
-          const Icon(Icons.arrow_forward_rounded, size: 21),
-        ]),
+      : Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Text(
+                label,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(width: 10),
+            const Icon(Icons.arrow_forward_rounded, size: 21),
+          ],
+        ),
   );
 }
