@@ -4,14 +4,16 @@ import 'login_view.dart';
 import 'register_view.dart';
 
 class AuthFlow extends StatefulWidget {
-  const AuthFlow({super.key, required this.viewModel});
+  const AuthFlow({super.key, required this.viewModel, this.initialRegister = false});
   final AuthViewModel viewModel;
+  final bool initialRegister;
+
   @override
   State<AuthFlow> createState() => _AuthFlowState();
 }
 
 class _AuthFlowState extends State<AuthFlow> {
-  bool _register = true;
+  late bool _register = widget.initialRegister;
   bool _accountCreated = false;
   String _email = '';
 

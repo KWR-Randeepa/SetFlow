@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import '../../../core/new_id.dart';
 import '../../../core/validators.dart';
-import '../../../core/data/local_database.dart';
+import '../../../data/local_database.dart';
 import '../models/app_user.dart';
 import '../services/password_service.dart';
 import '../services/session_store.dart';

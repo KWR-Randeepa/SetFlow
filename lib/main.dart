@@ -35,7 +35,7 @@ class _BootstrapState extends State<_Bootstrap> {
       final auth = AuthViewModel(LocalAuthRepository(
         database, PasswordService(),
         SecureSessionStore(const FlutterSecureStorage(
-          aOptions: AndroidOptions(encryptedSharedPreferences: true),
+          aOptions: AndroidOptions(),
         )),
       ));
       setState(() { _database = database; _auth = auth; });

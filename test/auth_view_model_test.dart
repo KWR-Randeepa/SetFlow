@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:routine_mvvm/features/auth/models/app_user.dart';
-import 'package:routine_mvvm/features/auth/repositories/auth_repository.dart';
-import 'package:routine_mvvm/features/auth/viewmodels/auth_view_model.dart';
+import 'package:setflow/features/auth/models/app_user.dart';
+import 'package:setflow/features/auth/repositories/auth_repository.dart';
+import 'package:setflow/features/auth/viewmodels/auth_view_model.dart';
 
 class FakeAuthRepository implements AuthRepository {
   static const sample = AppUser(id: 'account-a', fullName: 'Alex', email: 'alex@example.com');

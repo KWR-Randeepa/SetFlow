@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:routine_mvvm/core/validators.dart';
-import 'package:routine_mvvm/data/local_database.dart';
-import 'package:routine_mvvm/features/auth/repositories/auth_repository.dart';
-import 'package:routine_mvvm/features/auth/repositories/local_auth_repository.dart';
-import 'package:routine_mvvm/features/auth/services/password_service.dart';
-import 'package:routine_mvvm/features/auth/services/session_store.dart';
-import 'package:routine_mvvm/features/workouts/repositories/workout_repository.dart';
+import 'package:setflow/core/validators.dart';
+import 'package:setflow/data/local_database.dart';
+import 'package:setflow/features/auth/repositories/auth_repository.dart';
+import 'package:setflow/features/auth/repositories/local_auth_repository.dart';
+import 'package:setflow/features/auth/services/password_service.dart';
+import 'package:setflow/features/auth/services/session_store.dart';
+import 'package:setflow/features/workouts/repositories/workout_repository.dart';
 
 class MemorySessionStore implements SessionStore {
   String? id;
