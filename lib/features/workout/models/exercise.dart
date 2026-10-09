@@ -5,6 +5,6 @@ class Exercise {
   final bool done;
 
   factory Exercise.fromMap(Map<String, Object?> map) => Exercise(
-    id: map\\\['id'] as String, title: map\\\['title'] as String,
-    done: map\\\['is\\\_done'] == 1);
+    id: map['id'] as String, title: map['title'] as String,
+    done: map['is_done'] == 1);
 }
