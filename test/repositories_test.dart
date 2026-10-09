@@ -1,12 +1,12 @@
-import 'package:flutter\\\_test/flutter\\\_test.dart';
-import 'package:sqflite\\\_common\\\_ffi/sqflite\\\_ffi.dart';
-import 'package:routine\\\_mvvm/core/validators.dart';
-import 'package:routine\\\_mvvm/data/local\\\_database.dart';
-import 'package:routine\\\_mvvm/features/auth/repositories/auth\\\_repository.dart';
-import 'package:routine\\\_mvvm/features/auth/repositories/local\\\_auth\\\_repository.dart';
-import 'package:routine\\\_mvvm/features/auth/services/password\\\_service.dart';
-import 'package:routine\\\_mvvm/features/auth/services/session\\\_store.dart';
-import 'package:routine\\\_mvvm/features/workouts/repositories/workout\\\_repository.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:routine_mvvm/core/validators.dart';
+import 'package:routine_mvvm/data/local_database.dart';
+import 'package:routine_mvvm/features/auth/repositories/auth_repository.dart';
+import 'package:routine_mvvm/features/auth/repositories/local_auth_repository.dart';
+import 'package:routine_mvvm/features/auth/services/password_service.dart';
+import 'package:routine_mvvm/features/auth/services/session_store.dart';
+import 'package:routine_mvvm/features/workouts/repositories/workout_repository.dart';
 
 class MemorySessionStore implements SessionStore {
   String? id;
@@ -28,7 +28,7 @@ void main() {
   setUp(() async {
     db = await databaseFactoryFfi.openDatabase(inMemoryDatabasePath,
       options: OpenDatabaseOptions(version: 1,
-        onConfigure: (db) => db.execute('PRAGMA foreign\\\_keys = ON'),
+        onConfigure: (db) => db.execute('PRAGMA foreign_keys = ON'),
         onCreate: LocalDatabase.createSchema));
     database = LocalDatabase(db);
     session = MemorySessionStore();
@@ -39,10 +39,10 @@ void main() {
   test('hashes password, normalizes email, restores and deletes session', () async {
     await auth.register(fullName: ' Alex ', email: ' Alex@Example.com ', password: 'secret123');
     final row = (await db.query('users')).single;
-    expect(row\\\['password\\\_hash'], isNot('secret123'));
-    expect((row\\\['password\\\_hash'] as String).startsWith(r'$2'), isTrue);
-    expect(row\\\['full\\\_name'], 'Alex');
-    expect(row\\\['email'], 'alex@example.com');
+    expect(row['password_hash'], isNot('secret123'));
+    expect((row['password_hash'] as String).startsWith(r'$2'), isTrue);
+    expect(row['full_name'], 'Alex');
+    expect(row['email'], 'alex@example.com');
     expect(session.id, isNull); // Registration deliberately returns to login.
     final user = await auth.login(email: 'ALEX@example.com', password: 'secret123');
     expect((await auth.restoreSession())?.id, user.id);
@@ -66,9 +66,9 @@ void main() {
   });
 
   test('ST-13: account B cannot list or modify account A exercises', () async {
-    for (final id in \\\['a', 'b']) {
-      await db.insert('users', {'id': id, 'full\\\_name': id,
-        'email': '$id@example.com', 'password\\\_hash': 'unused-test-hash'});
+    for (final id in ['a', 'b']) {
+      await db.insert('users', {'id': id, 'full_name': id,
+        'email': '$id@example.com', 'password_hash': 'unused-test-hash'});
     }
     final accountA = WorkoutRepository(database, 'a');
     final accountB = WorkoutRepository(database, 'b');
@@ -82,9 +82,9 @@ void main() {
   });
 
   test('password rules enforce bcrypt byte boundary, including Unicode', () {
-    expect(Validators.password('a' \\\* 72), isNull);
-    expect(Validators.password('a' \\\* 73), isNotNull);
-    expect(Validators.password('🙂' \\\* 19), isNotNull);
+    expect(Validators.password('a' * 72), isNull);
+    expect(Validators.password('a' * 73), isNotNull);
+    expect(Validators.password('🙂' * 19), isNotNull);
     expect(Validators.password('      '), isNotNull);
     expect(Validators.password('12345'), isNotNull);
   });
